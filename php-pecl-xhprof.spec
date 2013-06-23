@@ -12,7 +12,7 @@ Source1:	%{modname}.ini
 Source2:	apache.conf
 URL:		http://pecl.php.net/package/xhprof
 BuildRequires:	%{php_name}-devel >= 4:5.2.0
-BuildRequires:	rpmbuild(macros) >= 1.650
+BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
 # https://bugs.php.net/61262
 ExclusiveArch:	%{ix86} %{x8664}
@@ -74,10 +74,11 @@ cd -
 
 %if %{with tests}
 # simple module load test
-%{__php} --no-php-ini \
-	--define extension_dir=extension/modules \
-	--define extension=%{modname}.so \
-	--modules | grep %{modname}
+%{__php} -n -q \
+	-d extension_dir=extension/modules \
+	-d extension=%{modname}.so \
+	-m > modules.log
+grep %{modname} modules.log
 %endif
 
 %install
