@@ -3,7 +3,7 @@
 Summary:	PHP extension for XHProf, a Hierarchical Profiler
 Name:		%{php_name}-pecl-xhprof
 Version:	0.9.3
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
@@ -14,6 +14,7 @@ URL:		http://pecl.php.net/package/xhprof
 BuildRequires:	%{php_name}-devel >= 4:5.2.0
 BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
+Provides:	php(xhprof) = %{version}
 # https://bugs.php.net/61262
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,8 +37,8 @@ package.
 Summary:	A Hierarchical Profiler for PHP - Web interface
 Group:		Development/Tools
 Requires:	%{_bindir}/dot
-Requires:	php(core) >= 5.2.0
 Requires:	%{name} = %{version}-%{release}
+Requires:	php(core) >= 5.2.0
 %if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
 %endif
