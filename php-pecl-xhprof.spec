@@ -3,7 +3,7 @@
 Summary:	PHP extension for XHProf, a Hierarchical Profiler
 Name:		%{php_name}-pecl-xhprof
 Version:	0.9.4
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
