@@ -1,9 +1,18 @@
+#
+# Conditional build:
+%bcond_without	web		# make web package
+
+# don't build for php53
+%if 0%{?_pld_builder:1} && "%{?php_suffix}" != "55"
+%undefine	with_web
+%endif
+
 %define		php_name	php%{?php_suffix}
 %define		modname		xhprof
 Summary:	PHP extension for XHProf, a Hierarchical Profiler
 Name:		%{php_name}-pecl-xhprof
 Version:	0.9.4
-Release:	3
+Release:	4
 License:	Apache v2.0
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
@@ -95,12 +104,14 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # Install the web interface
+%if %{with web}
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 install -d $RPM_BUILD_ROOT%{_datadir}/xhprof
 cp -a xhprof_html $RPM_BUILD_ROOT%{_datadir}/xhprof/xhprof_html
 cp -a xhprof_lib  $RPM_BUILD_ROOT%{_datadir}/xhprof/xhprof_lib
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -126,9 +137,11 @@ fi
 %attr(755,root,root) %{php_extensiondir}/%{modname}.so
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with web}
 %files -n xhprof
 %defattr(644,root,root,755)
 %doc docs/*
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
 %{_datadir}/xhprof
+%endif
