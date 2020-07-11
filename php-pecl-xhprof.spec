@@ -2,8 +2,8 @@
 # Conditional build:
 %bcond_without	web		# make web package
 
-# don't build for php53
-%if 0%{?_pld_builder:1} && "%{?php_suffix}" != "55"
+# build web package with php 7.4
+%if 0%{?_pld_builder:1} && "%{?php_suffix}" != "74"
 %undefine	with_web
 %endif
 
@@ -11,12 +11,12 @@
 %define		modname		xhprof
 Summary:	PHP extension for XHProf, a Hierarchical Profiler
 Name:		%{php_name}-pecl-xhprof
-Version:	0.9.4
-Release:	4
+Version:	2.2.0
+Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/PHP
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
-# Source0-md5:	ab4062a7337e3bdaa2fd7065a7942b8d
+# Source0-md5:	fc6f5dd8f73b7814d70e86c2184532b4
 Source1:	%{modname}.ini
 Source2:	apache.conf
 URL:		http://pecl.php.net/package/xhprof
@@ -132,7 +132,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGELOG CREDITS README LICENSE
+%doc CHANGELOG CREDITS README.md LICENSE
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{modname}.ini
 %attr(755,root,root) %{php_extensiondir}/%{modname}.so
 %{_examplesdir}/%{name}-%{version}
