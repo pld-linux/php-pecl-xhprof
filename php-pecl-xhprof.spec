@@ -20,7 +20,7 @@ Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 Source1:	%{modname}.ini
 Source2:	apache.conf
 URL:		http://pecl.php.net/package/xhprof
-BuildRequires:	%{php_name}-devel >= 4:5.2.0
+BuildRequires:	%{php_name}-devel >= 4:7.0
 BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
 Provides:	php(xhprof) = %{version}
