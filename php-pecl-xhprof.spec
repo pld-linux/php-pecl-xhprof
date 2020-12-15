@@ -11,15 +11,15 @@
 %define		modname		xhprof
 Summary:	PHP extension for XHProf, a Hierarchical Profiler
 Name:		%{php_name}-pecl-xhprof
-Version:	2.2.2
+Version:	2.2.3
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/PHP
-Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
-# Source0-md5:	582170616c512e1a8081ad5d7eb919e5
+Source0:	https://pecl.php.net/get/%{modname}-%{version}.tgz
+# Source0-md5:	b928016eda4ae6ae473f9175d9beaced
 Source1:	%{modname}.ini
 Source2:	apache.conf
-URL:		http://pecl.php.net/package/xhprof
+URL:		https://pecl.php.net/package/xhprof
 BuildRequires:	%{php_name}-devel >= 4:7.0
 BuildRequires:	rpmbuild(macros) >= 1.666
 %{?requires_php_extension}
