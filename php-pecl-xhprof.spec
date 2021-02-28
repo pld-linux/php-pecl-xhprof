@@ -47,9 +47,7 @@ Group:		Development/Tools
 Requires:	%{_bindir}/dot
 Requires:	php(core) >= 5.2.0
 Requires:	php(xhprof) = %{version}
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description -n xhprof
 XHProf is a function-level hierarchical profiler for PHP and has a
